@@ -2,10 +2,10 @@ from flask import Flask
 from flask_cors import CORS
 from backend.db import mysql
 from backend.auth import auth
-import os
-
+from backend.product_movement import  product_movement
 from backend.locations import locations
 from backend.products import  prodcuts
+from backend.ai_agent import  ai_chat
 
 app = Flask(__name__)
 
@@ -24,8 +24,8 @@ mysql.init_app(app)
 app.register_blueprint(auth, url_prefix="/api/auth")
 app.register_blueprint(locations, url_prefix="/api/location")
 app.register_blueprint(prodcuts , url_prefix="/api/product")
-
-
+app.register_blueprint(product_movement , url_prefix="/api/product_movement")
+app.register_blueprint(ai_chat , url_prefix="/api/ai_chat")
 
 @app.route("/")
 def home():

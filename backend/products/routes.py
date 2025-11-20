@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from pandas.io.json import json_normalize
 
 from backend.db import mysql
 
@@ -36,6 +35,7 @@ def getProductbyUserId(user_id):
             "name": item[1],
             "description": item[2],
             "image_url": item[5],
+            "qty":item[7],
             "location_name":item[8],
             "location_address":item[9],
             "location_img_url":item[12]
@@ -57,6 +57,7 @@ def getProductbyId(product_id):
             "name": item[1],
             "description": item[2],
             "image_url": item[5],
+            "qty":item[7],
             "location_name": item[8],
             "location_address": item[9],
             "location_img_url": item[12]
@@ -71,9 +72,10 @@ def addProductById(user_id):
     created_by = user_id
     located_in = data.get("located_in")
     image_url = data.get("image_url")
+    qty =  data.get("qty")
     cursor = mysql.connection.cursor()
-    sql = "INSERT INTO products (name , description , created_by , located_in , image_url) VALUES (%s , %s , %s , %s , %s)"
-    cursor.execute(sql , (name,description,created_by ,located_in,image_url,))
+    sql = "INSERT INTO products (name , description , created_by , located_in , image_url , qty) VALUES (%s , %s , %s , %s , %s , %s)"
+    cursor.execute(sql , (name,description,created_by ,located_in,image_url,qty))
     mysql.connection.commit()
     return  jsonify({"messsage" : "Product added !"})
 
@@ -84,6 +86,7 @@ def updateProductById(product_id):
     description = data.get("description")
     located_in = data.get("located_in")
     image_url = data.get("image_url")
+    qty =  data.get("qty")
 
     cursor = mysql.connection.cursor()
 
@@ -92,11 +95,12 @@ def updateProductById(product_id):
         SET name = %s,
             description = %s,
             located_in = %s,
-            image_url = %s
+            image_url = %s,
+            qty=%s
         WHERE product_id = %s
     """
 
-    cursor.execute(sql, (name, description, located_in, image_url, product_id))
+    cursor.execute(sql, (name, description, located_in, image_url, qty ,product_id))
     mysql.connection.commit()
 
     return jsonify({"message": "Product updated!"})
@@ -116,3 +120,18 @@ def deleteProductById(product_id):
     mysql.connection.commit()
 
     return jsonify({"message": "Product Deleted!"})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
