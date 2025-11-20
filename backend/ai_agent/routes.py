@@ -4,16 +4,13 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
 model = genai.GenerativeModel("gemini-2.5-flash")
-
 ai_chat = Blueprint("ai_agent", __name__)
 
 
 def generate_sql_query(user_prompt: str) -> str:
     ai_prompt  = f"""
 You are an SQL generator agent.
-
 Your job:
 1. Convert the user's request into a SAFE MySQL SELECT query.
 2. Use ONLY SELECT queries.
@@ -101,7 +98,7 @@ def transform_data_with_ai(data, user_prompt):
 
     Now convert this data into the MOST useful final format.
     Make it clean, structured, and readable.
-    Return JSON only.
+    Return Text only.
     """
 
     response = model.generate_content(ai_prompt)
