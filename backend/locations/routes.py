@@ -1,9 +1,6 @@
-import datetime
 
 from flask import Blueprint, request, jsonify
-import bcrypt
 from backend.db import mysql
-import jwt
 locations = Blueprint("locations", __name__)
 
 
@@ -11,7 +8,7 @@ locations = Blueprint("locations", __name__)
 def getlocations(user_id):
     cursor =  mysql.connection.cursor()
     cursor.execute("SELECT * FROM locations where created_by = %s" , (user_id,))
-    location  =  cursor.fetchall()
+    location  =  cursor.fetchone()
     if not  location:
         return jsonify({"Message" : "No Warehouse Found" , "location":0})
     allLoacations = []
@@ -22,7 +19,21 @@ def getlocations(user_id):
             "address":x[2],
         })
     return  jsonify({"locations" : allLoacations})
-
+@locations.route("/getlocationbyid/<location_id>")
+def getLocationbyID(location_id):
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM locations where location_id = %s", (location_id,))
+    warehouse = cursor.fetchall()
+    if not warehouse:
+        return  jsonify({"message":"Location not found"})
+    location = []
+    for x in warehouse:
+        location.append({
+            "name":x[1],
+            "address":x[2],
+            "image_url":x[5]
+        })
+    return  jsonify({"location":location[0]})
 @locations.route("/addlocation/<user_id>" , methods=["POST"])
 def addLocation(user_id):
     data  = request.json

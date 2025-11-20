@@ -5,6 +5,7 @@ from backend.auth import auth
 import os
 
 from backend.locations import locations
+from backend.products import  prodcuts
 
 app = Flask(__name__)
 
@@ -22,6 +23,7 @@ mysql.init_app(app)
 # REGISTER BLUEPRINTS
 app.register_blueprint(auth, url_prefix="/api/auth")
 app.register_blueprint(locations, url_prefix="/api/location")
+app.register_blueprint(prodcuts , url_prefix="/api/product")
 
 
 

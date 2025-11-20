@@ -74,7 +74,7 @@ localStorage.setItem("user", JSON.stringify(res.data.user)); // optional
         type="email"
         placeholder="Email"
         value={userDetails.email}
-        onChange={(e) =>
+        onChange={(e) =>  
           setUserDetails(prev => ({ ...prev, email: e.target.value }))
         }
       />
