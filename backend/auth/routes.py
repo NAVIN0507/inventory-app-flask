@@ -69,7 +69,6 @@ def login():
         "message": "Login successful",
         "token": token,
         "user": {
-            "user_id": user_id,
             "name": name,
             "email": email
         }
@@ -92,7 +91,9 @@ def me():
         return jsonify({"message": "User not found"}), 404
 
     return jsonify({
+         
         "user_id": user[0],
         "name": user[1],
         "email": user[2]
+        
     })

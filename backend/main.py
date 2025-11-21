@@ -9,7 +9,6 @@ from backend.ai_agent import  ai_chat
 
 app = Flask(__name__)
 
-# MySQL configuration
 
 app.config['MYSQL_HOST'] = "localhost"
 app.config['MYSQL_USER'] = "root"
@@ -17,10 +16,13 @@ app.config['MYSQL_PASSWORD'] = "sql123"
 app.config['MYSQL_DATABASE'] = "inventory_app"
 
 
-CORS(app)
+CORS(
+    app,
+    resources={r"/api/*": {"origins": "http://localhost:3000"}},
+    supports_credentials=True
+)
 mysql.init_app(app)
 
-# REGISTER BLUEPRINTS
 app.register_blueprint(auth, url_prefix="/api/auth")
 app.register_blueprint(locations, url_prefix="/api/location")
 app.register_blueprint(prodcuts , url_prefix="/api/product")
