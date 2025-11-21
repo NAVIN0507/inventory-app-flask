@@ -30,7 +30,7 @@ const SignInpPage = () => {
             
             localStorage.setItem("token" , response.data.token)
             localStorage.setItem("user" , JSON.stringify(response.data.user))
-            // window.location.href = "/app"
+            window.location.href = "/app"
         }
         else{
             toast.error("Login Failed" , {

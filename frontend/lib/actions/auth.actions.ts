@@ -28,7 +28,7 @@ export const loginUser = async (email: string, password: string):Promise<Respons
      return {
         success:false,
         data:null,
-        message:"Something went wrong 🙏"
+        message:"Something went wrong "
      }   
     }
 }
@@ -56,7 +56,7 @@ export const registerUser = async (name:string , email: string, password: string
      return {
         success:false,
         data:null,
-        message:"Something went wrong 🙏"
+        message:"Something went wrong "
      }   
     } 
 }
@@ -84,7 +84,7 @@ export const getCurrentUser = async (token:string):Promise<Response> => {
      return {
         success:false,
         data:null,
-        message:"Something went wrong 🙏"
+        message:"Something went wrong "
      }   
     }
 }

@@ -3,7 +3,7 @@ import { useUser } from '@/hooks/use-user'
 import React from 'react'
 
 const Layout = ({children}:{children:React.ReactNode}) => {
-    const {isAuthenticated , user} = useUser();
+    const {isAuthenticated } = useUser();
     if(isAuthenticated){
         return window.location.href = "/app"
     }

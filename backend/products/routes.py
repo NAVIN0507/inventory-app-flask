@@ -29,19 +29,24 @@ def getProductbyUserId(user_id):
     items = cursor.fetchall()
     if not items:
         return jsonify({"message": "No product to be found on this location", "product": 0})
+    sql = "select count(*) from products where created_by = %s"
+    cursor.execute(sql , (user_id,))
+    product_count = cursor.fetchone()
+
     productsbyusers = []
     for item in items:
         productsbyusers.append({
+            "product_id": item[0],
             "name": item[1],
             "description": item[2],
             "image_url": item[5],
             "qty":item[7],
-            "location_name":item[8],
-            "location_address":item[9],
-            "location_img_url":item[12]
+            "location_name":item[9],
+            "location_address":item[10],
+            "location_img_url":item[13]
         })
 
-    return jsonify({"message": "Products from location", "products": productsbyusers})
+    return jsonify({ "products": productsbyusers , "product_count":product_count[0] })
 
 @prodcuts.route("/getproductbyId/<product_id>")
 def getProductbyId(product_id):

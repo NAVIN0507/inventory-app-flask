@@ -61,7 +61,7 @@ def login():
     payload  = {
         "user_id" : user_id,
         "email":email,
-        "exp":datetime.datetime.utcnow() +  datetime.timedelta(hours=3)
+        "exp":datetime.datetime.utcnow() +  datetime.timedelta(days=3)
     }
 
     token = jwt.encode(payload , "JWT_AUTH_SECRET" , algorithm="HS256")
@@ -69,6 +69,7 @@ def login():
         "message": "Login successful",
         "token": token,
         "user": {
+            "user_id": user_id,
             "name": name,
             "email": email
         }
@@ -91,7 +92,6 @@ def me():
         return jsonify({"message": "User not found"}), 404
 
     return jsonify({
-         
         "user_id": user[0],
         "name": user[1],
         "email": user[2]
