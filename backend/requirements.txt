@@ -4,5 +4,5 @@ flask_mysqldb
 bcrypt
 python-dotenv
 jwt
-genai
+
 

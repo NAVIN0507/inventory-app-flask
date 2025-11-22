@@ -7,7 +7,6 @@ from backend.locations import locations
 from backend.products import  prodcuts
 from dotenv import load_dotenv
 
-from backend.ai_agent import  ai_chat
 import os
 load_dotenv()
 
@@ -33,7 +32,6 @@ app.register_blueprint(auth, url_prefix="/api/auth")
 app.register_blueprint(locations, url_prefix="/api/location")
 app.register_blueprint(prodcuts , url_prefix="/api/product")
 app.register_blueprint(product_movement , url_prefix="/api/product_movement")
-app.register_blueprint(ai_chat , url_prefix="/api/ai_chat")
 
 @app.route("/")
 def home():
