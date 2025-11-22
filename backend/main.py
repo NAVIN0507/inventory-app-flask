@@ -23,7 +23,7 @@ app.config['MYSQL_DB'] = os.getenv("MYSQL_DATABASE")   # <-- FIXED
 
 CORS(
     app,
-    resources={r"/api/*": {"origins": ["http://localhost:3000" , "https://inventory-app-flask.vercel.app/"]}},
+    resources={r"/api/*": {"origins": ["http://localhost:3000" , "https://inventory-app-flask.vercel.app"]}},
     supports_credentials=True
 )
 mysql.init_app(app)
