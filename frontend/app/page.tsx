@@ -30,17 +30,12 @@ const Navbar = () => {
             <span className='text-xl font-bold text-white'>InventoryPro</span>
           </div>
           <div className='flex items-center gap-4'>
-            <ModeToggle />
             <Link href='/app'>
               <Button className='bg-primary text-black font-medium'>
                 Login
               </Button>
             </Link>
-            <Link href='/app'>
-              <Button  variant={"secondary"}  className='  font-medium'>
-                Create a Account
-              </Button>
-            </Link>
+           
           </div>
         </div>
       </div>

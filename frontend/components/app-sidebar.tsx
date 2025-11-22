@@ -5,22 +5,18 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarSeparator,
-  SidebarTrigger,
+
 } from "@/components/ui/sidebar"
 import { usePathname } from "next/navigation"
 import { useUser } from "@/hooks/use-user"
 import Link from "next/link"
 import {Warehouses} from "./ware-houses"
 
-// Menu items.
 const items = [
   {
     title: "Dashboard",
