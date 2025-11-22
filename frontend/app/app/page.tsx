@@ -8,6 +8,7 @@ import { useUser } from '@/hooks/use-user'
 import { ArrowRightIcon, ChevronRightIcon, Clock, LoaderPinwheelIcon, PlusIcon } from 'lucide-react';
 import React from 'react'
 import Link from 'next/link';
+import ProductMovementsTable from '@/components/product-movement';
 
 const page = () => {
   const {user , loading} = useUser();
@@ -38,6 +39,10 @@ const page = () => {
          <div className='col-span-1'>
           <ProductsList total={product_count} products={products}/>
         </div>
+
+        <div className='col-span-3'>
+            <ProductMovementsTable/>
+        </div>
       </div>
     </div>
   )
@@ -61,7 +66,7 @@ const StateCard = ({title , count}:{title:string , count:number}) => {
                 
                </div>
                
-               <div className='p-4  rounded-lg border border-zinc-800'>
+               <div className='p-4  rounded-lg border '>
                    <AreaChart totalProducts={[0 , 0 , count]} />
                </div>
            </div>
@@ -173,10 +178,10 @@ const ProductsList = ({total , products }:{total:number;products:ProductWithLoca
                     </Button>
                 </div>
                   <div className='divide-y '>
-                    {products.slice(2).map(product=>(
+                    {products.slice(products.length-4).map(product=>(
                         <Link 
                             key={product?.product_id}
-                            href={`/app/product/${product?.product_id}`}
+                            href={`/app/products/${product?.product_id}`}
                             className='flex items-center gap-4 px-6 py-4  transition-colors group'
                         >
                             <div className='flex-1 min-w-0 flex items-center gap-3'>

@@ -42,7 +42,6 @@ const AddProductForm = () => {
         setSubmitting(true);
 
         try {
-            // Update this URL to match your backend endpoint
             const response = await fetch(`http://127.0.0.1:5000/api/product/addProduct/${user.user_id}`, {
                 method: 'POST',
                 headers: {
@@ -58,7 +57,6 @@ const AddProductForm = () => {
             const data = await response.json();
             
             alert(data.message || 'Product added successfully!');
-            // Reset form
             setFormData({
                 name: '',
                 description: '',
@@ -75,7 +73,7 @@ const AddProductForm = () => {
     };
 
     return (
-        <div className=' border-zinc-800 p-6'>
+        <div className='  p-6'>
             <div className='mb-6'>
                 <h2 className='text-2xl font-bold text-white mb-2'>Add New Product</h2>
                 <p className='text-sm text-zinc-500'>Fill in the details to add a new product to your inventory</p>
@@ -94,7 +92,7 @@ const AddProductForm = () => {
                         onChange={handleChange}
                         required
                         placeholder='Enter product name'
-                        className='w-full px-4 py-2.5 mt-2 border border-zinc-800 rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
+                        className='w-full px-4 py-2.5 mt-2 border  rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
                     />
                 </div>
 
@@ -110,7 +108,7 @@ const AddProductForm = () => {
                         required
                         rows={4}
                         placeholder='Enter product description'
-                        className='w-full px-4 py-2.5 mt-2 border border-zinc-800 rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors resize-none'
+                        className='w-full px-4 py-2.5 mt-2 border  rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors resize-none'
                     />
                 </div>
 
@@ -124,7 +122,7 @@ const AddProductForm = () => {
                         value={formData.located_in}
                         onChange={handleChange}
                         required
-                        className='w-full px-4 py-2.5 mt-2 bg-sidebar border border-zinc-800 rounded-lg text-white focus:outline-none focus:border-green-500 transition-colors'
+                        className='w-full px-4 py-2.5 mt-2 bg-sidebar border  rounded-lg text-white focus:outline-none focus:border-green-500 transition-colors'
                     >
                         {locations?.map((location) => (
                             <option key={location.location_id} value={location.location_id}>
@@ -146,7 +144,7 @@ const AddProductForm = () => {
                             value={formData.image_url}
                             onChange={handleChange}
                             placeholder='https://example.com/image.jpg'
-                            className='w-full px-4 py-2.5 mt-2 border border-zinc-800 rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
+                            className='w-full px-4 py-2.5 mt-2 border  rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
                         />
                         <Upload size={18} className='absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600' />
                     </div>
@@ -165,7 +163,7 @@ const AddProductForm = () => {
                         required
                         min="0"
                         placeholder='0'
-                        className='w-full px-4 py-2.5 mt-2 border border-zinc-800 rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
+                        className='w-full px-4 py-2.5 mt-2 border  rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
                     />
                 </div>
 

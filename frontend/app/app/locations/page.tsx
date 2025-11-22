@@ -38,6 +38,7 @@ const page = () => {
         </Button>
   </DialogTrigger>
   <DialogContent>
+    <DialogTitle></DialogTitle>
   <AddLocationForm/>
   </DialogContent>
 </Dialog>

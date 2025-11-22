@@ -40,6 +40,7 @@ const page = () => {
         </Button>
   </DialogTrigger>
   <DialogContent>
+    <DialogTitle></DialogTitle>
    <AddProductForm/>
   </DialogContent>
 </Dialog>

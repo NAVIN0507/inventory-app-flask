@@ -20,7 +20,7 @@ def getlocations(user_id):
             "location_id":x[0],
             "name":x[1],
             "address":x[2],
-            "image_url":x[5]
+            "image_url":x[3]
         })
     return  jsonify({"locations" : allLoacations , "location_count":location_count[0]})
 @locations.route("/getlocationbyid/<location_id>")
@@ -35,7 +35,7 @@ def getLocationbyID(location_id):
         location.append({
             "name":x[1],
             "address":x[2],
-            "image_url":x[5]
+            "image_url":x[3]
         })
     return  jsonify({"location":location[0]})
 @locations.route("/addlocation/<user_id>" , methods=["POST"])

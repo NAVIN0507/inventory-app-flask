@@ -31,28 +31,50 @@ def addProductMovement():
     qty = data.get("qty")
     created_by = data.get("created_by")
     cursor = mysql.connection.cursor()
-    sql = "SELECT qty from products where product_id = %s"
-    cursor.execute(sql, (product_id,))
+    
+    sql = "SELECT qty FROM products WHERE product_id = %s AND located_in = %s"
+    cursor.execute(sql, (product_id, from_location))
     datas = cursor.fetchone()
+    
+    if not datas:
+        return jsonify({"message": "Product not found at source location"})
+    
     oldProductQTY = datas[0]
+    
     if oldProductQTY < qty:
-        return jsonify({"Message" :"Quentity is not enough"})
+        return jsonify({"message": "Quantity is not enough"})
+    
     newProductQTY = oldProductQTY - qty
+    sql = "UPDATE products SET qty = %s WHERE product_id = %s AND located_in = %s"
+    cursor.execute(sql, (newProductQTY, product_id, from_location))
+    
+    sql = "SELECT qty FROM products WHERE product_id = %s AND located_in = %s"
+    cursor.execute(sql, (product_id, to_location))
+    destination_product = cursor.fetchone()
+    
+    if destination_product:
+        new_dest_qty = destination_product[0] + qty
+        sql = "UPDATE products SET qty = %s WHERE product_id = %s AND located_in = %s"
+        cursor.execute(sql, (new_dest_qty, product_id, to_location))
+    else:
+       
+        sql = "SELECT name, description, image_url, created_by FROM products WHERE product_id = %s"
+        cursor.execute(sql, (product_id,))
+        product_details = cursor.fetchone()
+        
+        sql = """
+        INSERT INTO products (name, description, created_by, located_in, image_url, qty)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        cursor.execute(sql, (product_details[0], product_details[1], product_details[3], 
+                            to_location, product_details[2], qty))
+    
     sql = """
-    update products
-    SET qty = %s
-    where product_id = %s
+    INSERT INTO product_movements
+    (product_id, from_location, to_location, qty, created_by)   
+    VALUES (%s, %s, %s, %s, %s)
     """
-    cursor.execute(sql , (newProductQTY , product_id))
-    mysql.connection.commit()
-    sql = """
-    INSERT INTO
-    product_movements
-    (product_id , from_location , to_location , qty , created_by)   
-    VALUES
-    (%s , %s , %s , %s , %s)
-    """
-    cursor.execute(sql , (product_id, from_location , to_location , qty , created_by))
+    cursor.execute(sql, (product_id, from_location, to_location, qty, created_by))
     mysql.connection.commit()
 
-    return  jsonify({"Message" :"Product Movement Added" })
+    return jsonify({"message": "Product Movement Added Successfully"})

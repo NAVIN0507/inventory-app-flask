@@ -3,6 +3,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useUser } from "@/hooks/use-user";
+import { LoaderPinwheelIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -18,7 +19,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [isAuthenticated, loading, router]);
 
   if (loading) {
-    return <p>Loading...</p>;
+     return <div className='h-screen flex items-center justify-center'>
+      <LoaderPinwheelIcon className='animate-spin'/>
+    </div>
   }
 
   if (!isAuthenticated) {

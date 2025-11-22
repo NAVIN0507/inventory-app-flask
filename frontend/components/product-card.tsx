@@ -49,9 +49,9 @@ const ProductCard = ({productswithlocation}:Props) => {
           </p>
         </div>
 
-        <div className='border-t border-zinc-800 pt-4'>
+        <div className='border-t  pt-4'>
           <div className='flex items-start gap-3'>
-            <div className='w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex-shrink-0 overflow-hidden'>
+            <div className='w-12 h-12 rounded-lg border  overflow-hidden'>
               {product.location_img_url ? (
                 <img 
                   src={product.location_img_url} 
@@ -76,7 +76,7 @@ const ProductCard = ({productswithlocation}:Props) => {
           </div>
         </div>
 
-        <div className='flex items-center justify-between pt-4 mt-4 border-t border-zinc-800'>
+        <div className='flex items-center justify-between pt-4 mt-4 border-t '>
           <span className='text-xs text-zinc-600'>ID: {product.product_id}</span>
           <div className='flex items-center gap-1.5'>
             <div className={`w-1.5 h-1.5 rounded-full ${product.qty && product.qty > 0 ? 'bg-green-500' : 'bg-red-500'}`} />

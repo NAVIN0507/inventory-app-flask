@@ -25,12 +25,12 @@ def register():
         return jsonify({"message": "User already exists"}), 400
 
     # hash password
-    hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    
 
     # insert user
     cursor.execute(
-        "INSERT INTO users (name, email, password_hash) VALUES (%s, %s, %s)",
-        (name, email, hashed_password)
+        "INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
+        (name, email, password)
     )
     mysql.connection.commit()
 
@@ -50,20 +50,18 @@ def login():
 
     if not user:
         return jsonify({"message": "User not found"}), 404
-    user_id = user[4]
-    name = user[0]
-    email = user[1]
-    hashed = user[2]
+    user_id = user[0]
+    name = user[1]
+    email = user[2]
+    hashed = user[3]
 
-    if not  bcrypt.checkpw(password.encode(), hashed.encode()):
-        return jsonify({"message": "Invalid Password"})
-
+    
     payload  = {
-        "user_id" : user_id,
-        "email":email,
-        "exp":datetime.datetime.utcnow() +  datetime.timedelta(days=3)
-    }
-
+    "user_id" : user_id,
+    "email": email,
+    "exp": int((datetime.datetime.utcnow() + datetime.timedelta(days=3)).timestamp())
+   }
+    print(payload)
     token = jwt.encode(payload , "JWT_AUTH_SECRET" , algorithm="HS256")
     return jsonify({
         "message": "Login successful",

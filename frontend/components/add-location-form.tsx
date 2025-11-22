@@ -39,7 +39,6 @@ const AddLocationForm = () => {
         setSubmitting(true);
 
         try {
-            // Update this URL to match your backend endpoint
             const response = await fetch(`http://127.0.0.1:5000/api/location/addlocation/${user.user_id}`, {
                 method: 'POST',
                 headers: {
@@ -57,7 +56,6 @@ const AddLocationForm = () => {
           toast.success("Warehouse added Successfully !" , {
             position:"bottom-right"
           })
-            // Reset form
             setFormData({
                 name: '',
                 address: '',
@@ -74,7 +72,7 @@ const AddLocationForm = () => {
     };
 
     return (
-        <div className=' border-zinc-800 p-6'>
+        <div className='  p-6'>
             <div className='mb-6'>
                 <h2 className='text-2xl font-bold text-white mb-2'>Add New Warehouse</h2>
                 <p className='text-sm text-zinc-500'>Create a new warehouse or storage location</p>
@@ -93,11 +91,10 @@ const AddLocationForm = () => {
                         onChange={handleChange}
                         required
                         placeholder='Enter location name (e.g., Main Warehouse)'
-                        className='w-full px-4 py-2.5 mt-2 border border-zinc-800 rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
+                        className='w-full px-4 py-2.5 mt-2 border  rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
                     />
                 </div>
 
-                {/* Address */}
                 <div className='space-y-2'>
                     <label htmlFor="address" className='text-sm font-medium text-zinc-300'>
                         Address <span className='text-red-500'>*</span>
@@ -110,11 +107,10 @@ const AddLocationForm = () => {
                         required
                         rows={3}
                         placeholder='Enter full address with city, state, and postal code'
-                        className='w-full px-4 py-2.5 mt-2 border border-zinc-800 rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors resize-none'
+                        className='w-full px-4 py-2.5 mt-2 border  rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors resize-none'
                     />
                 </div>
 
-                {/* Image URL */}
                 <div className='space-y-2'>
                     <label htmlFor="image_url" className='text-sm font-medium text-zinc-300'>
                         Image URL
@@ -127,7 +123,7 @@ const AddLocationForm = () => {
                             value={formData.image_url}
                             onChange={handleChange}
                             placeholder='https://example.com/location-image.jpg'
-                            className='w-full px-4 py-2.5 mt-2 border border-zinc-800 rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
+                            className='w-full px-4 py-2.5 mt-2 border  rounded-lg text-white placeholder:text-zinc-600 focus:outline-none focus:border-green-500 transition-colors'
                         />
                         <Upload size={18} className='absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600' />
                     </div>

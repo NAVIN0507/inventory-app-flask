@@ -8,13 +8,22 @@ import {
 } from "@/components/ui/avatar"
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { LoaderPinwheelIcon } from "lucide-react";
  export const Warehouses = () => {
   const { loading, user } = useUser();
   const pathname = usePathname();
   const { locations, location_count } = useLocations(user?.user_id);
 
-  if (loading) return <p>Loading...</p>;
-  if (!user) return <p>No user found</p>;
+  if (loading){
+      return <div className='h-screen flex items-center justify-center'>
+      <LoaderPinwheelIcon className='animate-spin'/>
+    </div>
+  }
+  if (!user){
+     return <div className='h-screen flex items-center justify-center'>
+          <LoaderPinwheelIcon className='animate-spin'/>
+        </div>
+  }
   return (
     <div className="space-y-3">
       {locations.map((location) => {

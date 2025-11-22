@@ -5,15 +5,20 @@ from backend.auth import auth
 from backend.product_movement import  product_movement
 from backend.locations import locations
 from backend.products import  prodcuts
+from dotenv import load_dotenv
+
 from backend.ai_agent import  ai_chat
+import os
+load_dotenv()
 
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = "localhost"
-app.config['MYSQL_USER'] = "root"
-app.config['MYSQL_PASSWORD'] = "sql123"
-app.config['MYSQL_DATABASE'] = "inventory_app"
+app.config['MYSQL_HOST'] = os.getenv("MYSQL_HOST")
+app.config['MYSQL_USER'] = os.getenv("MYSQL_USER")
+app.config['MYSQL_PASSWORD'] = os.getenv("MYSQL_PASSWORD")
+app.config['MYSQL_PORT'] = int(os.getenv("MYSQL_PORT"))
+app.config['MYSQL_DATABASE'] = os.getenv("MYSQL_DATABASE")
 
 
 CORS(

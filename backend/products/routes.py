@@ -4,7 +4,7 @@ from backend.db import mysql
 
 prodcuts = Blueprint("products", __name__)
 
-@prodcuts.route("/getproductbylocation/<location_id>")
+@prodcuts.route("/getproductsbylocation/<location_id>")
 def getproductbylocation(location_id):
     cursor = mysql.connection.cursor()
     sql = "SELECT * from products where located_in = %s"
@@ -15,16 +15,18 @@ def getproductbylocation(location_id):
     productsbylocation = []
     for item in items:
         productsbylocation.append({
+            "product_id":item[0],
             "name":item[1],
             "description":item[2],
-            "image_url":item[5]
+            "image_url":item[6],
+            "qty":item[3]
         })
     return jsonify({"message":"Products from location" , "products" : productsbylocation})
 
 @prodcuts.route("/getproductsbyuser/<user_id>")
 def getProductbyUserId(user_id):
     cursor = mysql.connection.cursor()
-    sql = "select * from products p  inner join locations l on p.located_in = l.location_id where p.created_by =  %s"
+    sql = "select * from products p  inner join locations l on p.located_in = l.location_id where p.created_by =  %s order by p.created_at desc"
     cursor.execute(sql, (user_id,))
     items = cursor.fetchall()
     if not items:
@@ -39,11 +41,11 @@ def getProductbyUserId(user_id):
             "product_id": item[0],
             "name": item[1],
             "description": item[2],
-            "image_url": item[5],
-            "qty":item[7],
+            "image_url": item[6],
+            "qty":item[3],
             "location_name":item[9],
             "location_address":item[10],
-            "location_img_url":item[13]
+            "location_img_url":item[11]
         })
 
     return jsonify({ "products": productsbyusers , "product_count":product_count[0] })
@@ -61,11 +63,11 @@ def getProductbyId(product_id):
         productByID.append({
             "name": item[1],
             "description": item[2],
-            "image_url": item[5],
-            "qty":item[7],
-            "location_name": item[8],
-            "location_address": item[9],
-            "location_img_url": item[12]
+            "image_url": item[6],
+            "qty":item[3],
+            "location_name": item[9],
+            "location_address": item[10],
+            "location_img_url": item[11]
         })
 
     return jsonify({"message": "Products from location by Id", "products": productByID[0]})

@@ -17,7 +17,7 @@ interface Props{
 const LocationCard = ({count , location}:Props) => {
   return (
     <Link href={`/app/locations/${location.location_id}`}>
-    <div className='border border-zinc-800  rounded-xl overflow-hidden   group cursor-pointer'>
+    <div className='border   rounded-xl overflow-hidden   group cursor-pointer'>
       {/* Image Section */}
       <div className='relative h-48 bg-zinc-900 overflow-hidden'>
         {location.image_url ? (
@@ -51,7 +51,7 @@ const LocationCard = ({count , location}:Props) => {
         </div>
 
         {/* Footer */}
-        <div className='flex items-center justify-between pt-3 border-t border-zinc-800'>
+        <div className='flex items-center justify-between pt-3 border-t '>
           <span className='text-xs text-zinc-600'>ID: {location.location_id}</span>
           <div className='flex items-center gap-1.5'>
             <div className='w-1.5 h-1.5 rounded-full bg-green-500' />
