@@ -89,7 +89,6 @@ const Page = () => {
 
   const fetchProducts = async () => {
     try {
-      // You'll need to provide this endpoint to get products by location
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/getproductsbylocation/${locationId}`);
       
       if (!response.ok) {
@@ -186,7 +185,6 @@ const Page = () => {
   return (
     <div className='min-h-screen  p-6'>
       <div className='max-w-7xl mx-auto'>
-        {/* Header */}
         <div className='flex items-center justify-between mb-6'>
           <div className='flex items-center gap-4'>
 

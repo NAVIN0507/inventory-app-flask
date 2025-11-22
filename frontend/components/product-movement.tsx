@@ -56,19 +56,16 @@ const ProductMovementsTable = () => {
     const enriched = await Promise.all(
       movementsData.map(async (movement) => {
         try {
-          // Fetch product details
           const productResponse = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/product/getproductbyId/${movement.product_id}`
           );
           const productData = await productResponse.json();
           
-          // Fetch from location details
           const fromLocationResponse = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}location/getlocationbyid/${movement.from_location}`
+            `${process.env.NEXT_PUBLIC_API_URL}/location/getlocationbyid/${movement.from_location}`
           );
           const fromLocationData = await fromLocationResponse.json();
 
-          // Fetch to location details
           const toLocationResponse = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/location/getlocationbyid/${movement.to_location}`
           );
@@ -102,46 +99,40 @@ const ProductMovementsTable = () => {
   return (
     <div className='min-h-screen p-6'>
       <div className='max-w-7xl mx-auto'>
-        {/* Header */}
         <div className='mb-6'>
-          <h1 className='text-3xl font-bold text-white mb-2'>Recent Product Movements</h1>
-          <p className='text-sm text-zinc-500'>Track all product transfers between locations</p>
+          <h1 className='text-3xl font-bold  mb-2'>Recent Product Movements</h1>
+          <p className='text-sm -500'>Track all product transfers between locations</p>
         </div>
 
 
-        {/* Movements Table */}
         <Card className='  p-6'>
-          <div className='mb-4'>
-            <h2 className='text-xl font-bold text-white'>Movement History</h2>
-          </div>
-
           {enrichedMovements.length === 0 ? (
             <div className='text-center py-12'>
-              <ArrowRight size={48} className='mx-auto text-zinc-700 mb-4' />
-              <p className='text-zinc-500 mb-2'>No product movements recorded</p>
-              <p className='text-sm text-zinc-600'>Product transfers will appear here</p>
+              <ArrowRight size={48} className='mx-auto -700 mb-4' />
+              <p className='-500 mb-2'>No product movements recorded</p>
+              <p className='text-sm -600'>Product transfers will appear here</p>
             </div>
           ) : (
             <div className='overflow-x-auto'>
               <table className='w-full'>
                 <thead>
                   <tr className='border-b '>
-                    <th className='text-left py-3 px-4 text-sm font-medium text-zinc-400 uppercase tracking-wide'>
+                    <th className='text-left py-3 px-4 text-sm font-medium  uppercase tracking-wide'>
                       Movement ID
                     </th>
-                    <th className='text-left py-3 px-4 text-sm font-medium text-zinc-400 uppercase tracking-wide'>
+                    <th className='text-left py-3 px-4 text-sm font-medium  uppercase tracking-wide'>
                       Product
                     </th>
-                    <th className='text-left py-3 px-4 text-sm font-medium text-zinc-400 uppercase tracking-wide'>
+                    <th className='text-left py-3 px-4 text-sm font-medium  uppercase tracking-wide'>
                       From Location
                     </th>
-                    <th className='text-center py-3 px-4 text-sm font-medium text-zinc-400 uppercase tracking-wide'>
+                    <th className='text-center py-3 px-4 text-sm font-medium  uppercase tracking-wide'>
                       
                     </th>
-                    <th className='text-left py-3 px-4 text-sm font-medium text-zinc-400 uppercase tracking-wide'>
+                    <th className='text-left py-3 px-4 text-sm font-medium  uppercase tracking-wide'>
                       To Location
                     </th>
-                    <th className='text-left py-3 px-4 text-sm font-medium text-zinc-400 uppercase tracking-wide'>
+                    <th className='text-left py-3 px-4 text-sm font-medium  uppercase tracking-wide'>
                       Quantity
                     </th>
                   </tr>
@@ -152,14 +143,12 @@ const ProductMovementsTable = () => {
                       key={movement.movement_id} 
                       className='border-b bg-sidebar  hover:bg-zinc-900/50 transition-colors'
                     >
-                      {/* Movement ID */}
                       <td className='py-4 px-4'>
-                        <span className='text-sm font-mono text-zinc-400'>
+                        <span className='text-sm font-mono '>
                           #{movement.movement_id}
                         </span>
                       </td>
 
-                      {/* Product */}
                       <td className='py-4 px-4'>
                         <div className='flex items-center gap-3'>
                           <div className='w-10 h-10 rounded-lg bg-zinc-900 overflow-hidden flex-shrink-0'>
@@ -171,51 +160,47 @@ const ProductMovementsTable = () => {
                               />
                             ) : (
                               <div className='w-full h-full flex items-center justify-center'>
-                                <Package size={18} className='text-zinc-700' />
+                                <Package size={18} className='-700' />
                               </div>
                             )}
                           </div>
                           <div>
-                            <p className='font-medium text-white text-sm'>
+                            <p className='font-medium text-sm'>
                               {movement.product_name || 'Loading...'}
                             </p>
-                            <p className='text-xs text-zinc-500'>
+                            <p className='text-xs -500'>
                               ID: {movement.product_id}
                             </p>
                           </div>
                         </div>
                       </td>
 
-                      {/* From Location */}
                       <td className='py-4 px-4'>
                         <div className='flex items-center gap-2'>
                           <MapPin size={16} className='text-red-500 flex-shrink-0' />
-                          <span className='text-sm text-white'>
+                          <span className='text-sm'>
                             {movement.from_location_name || 'Loading...'}
                           </span>
                         </div>
                       </td>
 
-                      {/* Arrow */}
                       <td className='py-4 px-4 text-center'>
                         <ArrowRight size={20} className='text-green-500 mx-auto' />
                       </td>
 
-                      {/* To Location */}
                       <td className='py-4 px-4'>
                         <div className='flex items-center gap-2'>
                           <MapPin size={16} className='text-green-500 flex-shrink-0' />
-                          <span className='text-sm text-white'>
+                          <span className='text-sm'>
                             {movement.to_location_name || 'Loading...'}
                           </span>
                         </div>
                       </td>
 
-                      {/* Quantity */}
                       <td className='py-4 px-4'>
                         <div className='flex items-center gap-2'>
                           <Package size={16} className='text-green-500' />
-                          <span className='font-semibold text-white'>
+                          <span className='font-semibold '>
                             {movement.qty}
                           </span>
                         </div>

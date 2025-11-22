@@ -28,15 +28,15 @@ const page = () => {
     <div className='flex flex-col space-y-2'>
       
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
-        <StateCard title='Total Products' count={product_count}/>
-        <StateCard title='Total Warehouses' count={location_count}/>
+       <AreaChart totalProducts={[0 , 0 , location_count]} title='Total Warehouses' description='Origanizes your warehouses' />
+       <AreaChart totalProducts={[0 , 0 , product_count]}  title='Total Products' description='Total number of products from your warehouses'/>
       </div>
 
-      <div className='grid grid-cols-1 sm:grid-cols-3 gap-2 mt-10'>
-        <div className='col-span-2'>
+      <div className='space-y-1 sm:grid  sm:grid-cols-3 gap-2 mt-10'>
+        <div className='sm:col-span-2'>
           <WareHouseList total={location_count} locations={locations}/>
         </div>
-         <div className='col-span-1'>
+         <div className='sm:col-span-1 max-sm:mt-4'>
           <ProductsList total={product_count} products={products}/>
         </div>
 
@@ -50,29 +50,7 @@ const page = () => {
 
 export default page
 
-const StateCard = ({title , count}:{title:string , count:number}) => {
-    return (
-        <div className=' border p-6 rounded-xl  transition-all duration-300 group'>
-           {/* Top accent bar */}
-           
-           <div className='flex items-center justify-between'>
-               <div className='flex flex-col gap-3'>
-                   <p className='text-sm font-medium text-zinc-500 uppercase tracking-wide'>
-                       {title}
-                   </p>
-                   <h1 className='text-5xl font-bold text-white'>
-                       {count.toLocaleString()}
-                   </h1>
-                
-               </div>
-               
-               <div className='p-4  rounded-lg border '>
-                   <AreaChart totalProducts={[0 , 0 , count]} />
-               </div>
-           </div>
-        </div>
-    )
-}
+
  type Location = {
   address: string;
   name: string;
@@ -90,12 +68,7 @@ const WareHouseList = ({total , locations}:{total:number;locations:Location[]}) 
                         <h2 className='text-base font-semibold '>Ware Houses</h2>
                         <p className='text-sm text-neutral-500 mt-0.5'>{total} active ware houses</p>
                     </div>
-                    <Button 
-                        onClick={()=>{}}
-                        className='w-4 flex items-center justify-center shadow-none bg-secondary border border-dashed'
-                    >
-                        <PlusIcon className='size-4 text-white'/>
-                    </Button>
+                   
                 </div>
                   <div className='divide-y '>
                     {locations.map(location=>(
@@ -170,12 +143,7 @@ const ProductsList = ({total , products }:{total:number;products:ProductWithLoca
                         <h2 className='text-base font-semibold '>Products</h2>
                         <p className='text-sm text-neutral-500 mt-0.5'>{total} Products</p>
                     </div>
-                    <Button 
-                        onClick={()=>{}}
-                        className='w-4 flex items-center justify-center shadow-none bg-secondary border border-dashed'
-                    >
-                        <PlusIcon className='size-4 text-white'/>
-                    </Button>
+                   
                 </div>
                   <div className='divide-y '>
                     {products.slice(products.length-4).map(product=>(
@@ -232,72 +200,3 @@ const ProductsList = ({total , products }:{total:number;products:ProductWithLoca
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// }
-
-
-// export const ProjectList = ({projects , total}:ProjectListProps) =>{
-//     const {open:createProject}  = useCreateProjectModel();
-//     return (
-//         <div className='flex flex-col'>
-//             <div className='bg-white rounded-2xl border border-neutral-200/60 overflow-hidden shadow-sm'>
-//                 <div className='flex items-center justify-between px-6 py-5 bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-100'>
-//                     <div>
-//                         <h2 className='text-base font-semibold text-neutral-900'>Projects</h2>
-//                         <p className='text-sm text-neutral-500 mt-0.5'>{total} active projects</p>
-//                     </div>
-//                     <Button 
-//                         onClick={createProject}
-//                         className='w-6 flex items-center justify-center shadow-none border bg-muted border-dashed'
-//                     >
-//                         <PlusIcon className='size-5 text-black'/>
-//                     </Button>
-//                 </div>
-//                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-px bg-neutral-100'>
-//                     {projects.map(project=>(
-//                         <Link 
-//                             key={project.$id}
-//                             href={`workspaces/${project.workspaceId}/projects/${project.$id}`}
-//                             className='bg-white p-5 hover:bg-neutral-50/50 transition-colors group'
-//                         >
-//                             <div className='flex items-center gap-3.5'>
-//                                 <ProjectsAvatar
-//                                     className='size-11 shrink-0 ring-2 ring-neutral-100'
-//                                     fallbackClassName='text-sm font-semibold'
-//                                     name={project.name}
-//                                     image={project.imageUrl}
-//                                 />
-//                                 <div className='flex-1 min-w-0'>
-//                                     <p className='text-sm font-semibold text-neutral-900 truncate group-hover:text-blue-600 transition-colors'>
-//                                         {project.name}
-//                                     </p>
-//                                 </div>
-//                                 <ChevronRightIcon className='size-5 text-neutral-300 group-hover:text-neutral-900 group-hover:translate-x-0.5 transition-all'/>
-//                             </div>
-//                         </Link>
-//                     ))}
-//                     {projects.length === 0 && (
-//                         <div className='col-span-2 bg-white px-6 py-16 text-center'>
-//                             <div className='inline-flex items-center justify-center w-12 h-12 rounded-full bg-neutral-100 mb-3'>
-//                                 <CheckCircle2 className='w-5 h-5 text-neutral-400' />
-//                             </div>
-//                             <p className='text-sm font-medium text-neutral-900'>No projects yet</p>
-//                             <p className='text-sm text-neutral-500 mt-1'>Create your first project to organize tasks</p>
-//                         </div>
-//                     )}
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
