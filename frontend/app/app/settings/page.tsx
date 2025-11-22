@@ -6,6 +6,10 @@ import { LogOut } from 'lucide-react';
 import React from 'react'
 
 const SettingsPage = () => {
+  const logout = ()=>{
+    localStorage.removeItem("token")
+    window.location.href="/sign-in"
+  }
   const {user}  = useUser();
   return (
     <div className='m-3 p-3 w-full h-fit border rounded-lg'>
@@ -18,7 +22,7 @@ const SettingsPage = () => {
           <p className='text-sm'>{user?.email}</p>
         </div>
         <div className='flex flex-row gap-2 items-center'>
-        <Button className='w-fit border' variant={"destructive"}>Logout
+        <Button className='w-fit border cursor-pointer' variant={"destructive"}  onClick={logout}>Logout
           <LogOut/>
         </Button>
         <ModeToggle/>

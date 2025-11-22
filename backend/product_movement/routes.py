@@ -7,7 +7,7 @@ product_movement = Blueprint("product_movement", __name__)
 @product_movement.route("/<user_id>")
 def getProductMovementByUserId(user_id):
     cursor =  mysql.connection.cursor()
-    sql = "SELECT * from product_movements where created_by = %s"
+    sql = "SELECT * from product_movements where created_by = %s limit 5"
     cursor.execute(sql , (user_id,))
     datas = cursor.fetchall()
     allProductMovements = []

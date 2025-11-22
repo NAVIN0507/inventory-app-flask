@@ -1,5 +1,5 @@
 "use client"
-import { Calendar, Home, Inbox, Map, Search, Settings, SettingsIcon, ShoppingBag, ShoppingCartIcon, Warehouse } from "lucide-react"
+import { Calendar, Home, Inbox, Map, Package, Search, Settings, SettingsIcon, ShoppingBag, ShoppingCartIcon, Warehouse } from "lucide-react"
 
 import {
   Sidebar,
@@ -49,9 +49,9 @@ export function AppSidebar() {
         <SidebarContent>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <div className="">
-                    <ShoppingCartIcon size={40} className="border p-2 rounded-xl"/>
-                    </div>
+                   <div className="p-2 bg-green-500 rounded-lg">
+                                 <Package size={20} className="text-black" />
+                               </div>
                     <div className="flex flex-col">
                 <h1 className="text-xl font-mono">InventoryPro</h1>
                 <p className="text-xs">Organize your Products</p>
