@@ -63,7 +63,7 @@ const Page = () => {
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://127.0.0.1:5000/api/product/getproductbyId/${productId}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/getproductbyId/${productId}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch product');
@@ -121,7 +121,7 @@ const Page = () => {
       const locationChanged = originalLocationId !== formData.located_in;
       
       if (locationChanged) {
-        const movementResponse = await fetch(`http://127.0.0.1:5000/api/product_movement/addProductMovement`, {
+        const movementResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product_movement/addProductMovement`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ const Page = () => {
 
         alert('Product moved successfully!');
       } else {
-        const response = await fetch(`http://127.0.0.1:5000/api/product/updateProduct/${productId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/updateProduct/${productId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ const Page = () => {
   const handleDelete = async () => {
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/product/deleteProduct/${productId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/deleteProduct/${productId}`, {
         method: 'DELETE'
       });
 

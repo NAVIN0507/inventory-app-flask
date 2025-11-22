@@ -39,7 +39,7 @@ const AddLocationForm = () => {
         setSubmitting(true);
 
         try {
-            const response = await fetch(`http://127.0.0.1:5000/api/location/addlocation/${user.user_id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/addlocation/${user.user_id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

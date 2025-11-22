@@ -52,7 +52,7 @@ const Page = () => {
   const fetchLocation = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://127.0.0.1:5000/api/location/getlocationbyid/${locationId}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/getlocationbyid/${locationId}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch location');
@@ -90,7 +90,7 @@ const Page = () => {
   const fetchProducts = async () => {
     try {
       // You'll need to provide this endpoint to get products by location
-      const response = await fetch(`http://127.0.0.1:5000/api/product/getproductsbylocation/${locationId}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/getproductsbylocation/${locationId}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch products');
@@ -116,7 +116,7 @@ const Page = () => {
     setSubmitting(true);
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/location/updatelocation/${locationId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/updatelocation/${locationId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ const Page = () => {
    
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/location/deletelocation/${locationId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/deletelocation/${locationId}`, {
         method: 'DELETE'
       });
 

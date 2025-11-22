@@ -33,7 +33,7 @@ const ProductMovementsTable = () => {
   const fetchProductMovements = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://127.0.0.1:5000/api/product_movement/${user?.user_id}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product_movement/${user?.user_id}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch product movements');
@@ -58,19 +58,19 @@ const ProductMovementsTable = () => {
         try {
           // Fetch product details
           const productResponse = await fetch(
-            `http://127.0.0.1:5000/api/product/getproductbyId/${movement.product_id}`
+            `${process.env.NEXT_PUBLIC_API_URL}/product/getproductbyId/${movement.product_id}`
           );
           const productData = await productResponse.json();
           
           // Fetch from location details
           const fromLocationResponse = await fetch(
-            `http://127.0.0.1:5000/api/location/getlocationbyid/${movement.from_location}`
+            `${process.env.NEXT_PUBLIC_API_URL}location/getlocationbyid/${movement.from_location}`
           );
           const fromLocationData = await fromLocationResponse.json();
 
           // Fetch to location details
           const toLocationResponse = await fetch(
-            `http://127.0.0.1:5000/api/location/getlocationbyid/${movement.to_location}`
+            `${process.env.NEXT_PUBLIC_API_URL}/location/getlocationbyid/${movement.to_location}`
           );
           const toLocationData = await toLocationResponse.json();
 
