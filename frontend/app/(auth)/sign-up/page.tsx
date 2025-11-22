@@ -26,10 +26,7 @@ const SignUpPage = () => {
             toast.success("Registration Successful" , {
                 position:"bottom-right"
             })
-            console.log(response.data);
-            
-            localStorage.setItem("token" , response.data.token)
-            localStorage.setItem("user" , JSON.stringify(response.data.user))
+          
             window.location.href = "/sign-in"
         }
         else{

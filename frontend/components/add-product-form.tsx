@@ -79,7 +79,7 @@ const AddProductForm = () => {
                 <p className='text-sm text-zinc-500'>Fill in the details to add a new product to your inventory</p>
             </div>
 
-            <form onSubmit={handleSubmit} className='space-y-6'>
+            <form onSubmit={handleSubmit} className='space-y-2'>
                 <div className='space-y-2'>
                     <label htmlFor="name" className='text-sm font-medium text-zinc-300'>
                         Product Name <span className='text-red-500'>*</span>
@@ -124,6 +124,7 @@ const AddProductForm = () => {
                         required
                         className='w-full px-4 py-2.5 mt-2 bg-sidebar border  rounded-lg text-white focus:outline-none focus:border-green-500 transition-colors'
                     >
+                        <option value="">Select warehouse</option>
                         {locations?.map((location) => (
                             <option key={location.location_id} value={location.location_id}>
                                 {location.name} - {location.address}
