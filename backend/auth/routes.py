@@ -1,8 +1,8 @@
 import datetime
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonifPy
 import bcrypt
-from backend.db import mysql
+from db import mysql
 import jwt
 from .jwt import verify_jwt
 auth = Blueprint("auth", __name__)

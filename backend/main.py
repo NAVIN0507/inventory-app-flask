@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_cors import CORS
-from backend.db import mysql
-from backend.auth import auth
-from backend.product_movement import  product_movement
-from backend.locations import locations
-from backend.products import  prodcuts
+from db import mysql
+from auth import auth
+from product_movement import  product_movement
+from locations import locations
+from products import  prodcuts
 from dotenv import load_dotenv
 
 import os
