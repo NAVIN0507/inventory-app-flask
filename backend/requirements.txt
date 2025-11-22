@@ -1,5 +1,6 @@
 flask
 flask_cors
-flask_mysql_connector
+flask_mysqldb
 bcrypt
 python-dotenv
+
