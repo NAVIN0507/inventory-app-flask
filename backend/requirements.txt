@@ -3,6 +3,7 @@ flask_cors
 flask_mysqldb
 bcrypt
 python-dotenv
-jwt
+PyJWT==2.8.0
+
 
 
