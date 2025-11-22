@@ -65,7 +65,7 @@ const Hero = () => {
 
               <p className='text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl'>
                 Streamline your inventory operations with real-time tracking, 
-                automated workflows, and powerful analytics all in one place.
+                 and powerful analytics all in one place.
               </p>
 
               <div className='flex flex-col sm:flex-row items-center gap-4 mb-16'>
