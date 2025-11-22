@@ -78,11 +78,7 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
           <hr  className="mt-2"/>
-          <div className="flex items-center gap-2 mt-2">
-            <Warehouse size={18}/>
-            Ware Houses
-          </div>
-          <Warehouses/>
+         
         </SidebarContent>
         <SidebarFooter className="m-2 border p-2 h-fit rounded-xl flex items-center justify-between">
             <div className="flex flex-col">
