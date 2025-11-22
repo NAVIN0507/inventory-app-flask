@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-from backend.db import mysql
+from db import mysql
 
 prodcuts = Blueprint("products", __name__)
 

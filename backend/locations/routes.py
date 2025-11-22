@@ -1,6 +1,6 @@
 
 from flask import Blueprint, request, jsonify
-from backend.db import mysql
+from db import mysql
 locations = Blueprint("locations", __name__)
 
 

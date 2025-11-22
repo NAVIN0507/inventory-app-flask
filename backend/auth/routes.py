@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Blueprint, request, jsonifPy
+from flask import Blueprint, request, jsonify
 import bcrypt
 from db import mysql
 import jwt
