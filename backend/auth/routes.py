@@ -45,7 +45,7 @@ def login():
     password = data.get("password")
 
     cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+    cursor.execute("SELECT * FROM users WHERE email = %s and password = %s", (email,password,))
     user = cursor.fetchone()
 
     if not user:
