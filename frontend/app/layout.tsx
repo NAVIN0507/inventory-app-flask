@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import {   Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
-
+import BackendWarmup from "@/components/backend-warmup";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,17 +22,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable}  antialiased`}
-      >
-        <ThemeProvider attribute={"class"}
-        defaultTheme="dark"
-        enableSystem
-        disableTransitionOnChange
+      <body className={`${inter.variable} antialiased`}>
+        <BackendWarmup /> 
+
+        <ThemeProvider
+          attribute={"class"}
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
         >
-        {children}
+          {children}
         </ThemeProvider>
-        <Toaster richColors/>
+
+        <Toaster richColors />
       </body>
     </html>
   );
